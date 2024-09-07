@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500&display=swap" rel="stylesheet">
+    <style media="screen">
+      body{
+        background-color: #EAFFF7;
+      }
+
+      /*This is awfully indented but i will fix it eventually*/
+      .header{
+        background-color:#9EFFDD;
+        text-align:center;
+        color:#e6e6e4;
+        font-family: 'Caveat', cursive;
+        font-size:50px;
+        border-radius: 5px;
+        text-shadow: -1px 0 purple, 0 1px purple, 1px 0 purple, 0 -1px purple;
+        box-shadow:2.8px 2.8px 2.2px rgba(0, 0, 0, 0.02),
+                   6.7px 6.7px 5.3px rgba(0, 0, 0, 0.028),
+                   12.5px 12.5px 10px rgba(0, 0, 0, 0.035),
+                   22.3px 22.3px 17.9px rgba(0, 0, 0, 0.042),
+                   41.8px 41.8px 33.4px rgba(0, 0, 0, 0.05),
+                   100px 100px 80px rgba(0, 0, 0, 0.07);
+      }
+      /* Style the tab */
+      .tab {
+        overflow: hidden;
+        border: 1px solid #ccc;
+        background-color: #B2E0DF;
+        margin-top: 10px;
+      }
+
+      /* Style the buttons inside the tab */
+      .tab button {
+        width: 33.3333333333333333333%;
+        background-color: #B2E0DF;
+        color: #6C6C6C;
+        float: left;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        padding: 14px 16px;
+        transition: 0.3s;
+        font-size: 17px;
+      }
+
+      /* Change background color of buttons on hover */
+      .tab button:hover {
+        background-color: #C3E6E4;
+      }
+
+      /* Create an active/current tablink class */
+      .tab button.active {
+        background-color: #74C1BD;
+      }
+
+      /* Style the tab content */
+      .tabcontent {
+        display: none;
+        padding: 6px 12px;
+        border: 1px solid #ccc;
+        border-top: none;
+      }
+      .posts-heading{
+        font-family: 'Caveat', cursive;
+        text-align: center;
+        padding-top: 10px;
+      }
+
+      /*All posts use the same css*/
+      .actual-posts-1{
+        margin-left: -5px;
+        padding-left: 10px;
+        font-size: 25px;
+        width: 99%;
+        /*height: 200px;*/
+        border-style: solid;
+        border-width: 2.5px;
+        border-color: black;
+        box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+        transition: box-shadow 0.3s ease-in-out;
+        margin-top: 50px;
+        margin-bottom: 50px;
+      }
+
+      /*Style the shadow under posts and similar stuff*/
+      .actual-posts-1:hover{
+        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      }
+
+      /*All journals use the same css because i'm an idiot*/
+      .actual-journals-1{
+        margin-left: -5px;
+        padding-left: 10px;
+        font-size: 25px;
+        width: 99%;
+        /*height: 200px;*/
+        border-style: solid;
+        border-width: 2.5px;
+        border-color: black;
+        box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+        transition: box-shadow 0.3s ease-in-out;
+        margin-top: 50px;
+        margin-bottom: 50px;
+      }
+
+      /*Style the shadow under journals and ONLY journals*/
+      .actual-journals-1:hover{
+        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      }
+
+      .contacts-1{
+        margin-left: -5px;
+        padding-left: 10px;
+        font-size: 20px;
+        width: 50%;
+        /*height: 200px;*/
+        border-style: solid;
+        border-width: 2.5px;
+        border-color: black;
+        box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+        transition: box-shadow 0.3s ease-in-out;
+        margin-top: 50px;
+        margin-bottom: 20px;
+      }
+
+      /*Style the shadow under posts and similar stuff*/
+      .contacts-1:hover{
+        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>'), auto;
+      }
+      .contacts-2{
+        margin-left: -5px;
+        padding-left: 10px;
+        font-size: 20px;
+        width: 50%;
+        /*height: 200px;*/
+        border-style: solid;
+        border-width: 2.5px;
+        border-color: black;
+        box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+        transition: box-shadow 0.3s ease-in-out;
+        margin-top: 20px;
+        margin-bottom: 20px;
+      }
+
+      /*Style the shadow under posts and similar stuff*/
+      .contacts-2:hover{
+        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30" height="30" viewBox="0 0 50 50"><path d="M 18.90625 7 C 18.90625 7 12.539063 7.4375 8.375 10.78125 C 8.355469 10.789063 8.332031 10.800781 8.3125 10.8125 C 7.589844 11.480469 7.046875 12.515625 6.375 14 C 5.703125 15.484375 4.992188 17.394531 4.34375 19.53125 C 3.050781 23.808594 2 29.058594 2 34 C 1.996094 34.175781 2.039063 34.347656 2.125 34.5 C 3.585938 37.066406 6.273438 38.617188 8.78125 39.59375 C 11.289063 40.570313 13.605469 40.960938 14.78125 41 C 15.113281 41.011719 15.429688 40.859375 15.625 40.59375 L 18.0625 37.21875 C 20.027344 37.683594 22.332031 38 25 38 C 27.667969 38 29.972656 37.683594 31.9375 37.21875 L 34.375 40.59375 C 34.570313 40.859375 34.886719 41.011719 35.21875 41 C 36.394531 40.960938 38.710938 40.570313 41.21875 39.59375 C 43.726563 38.617188 46.414063 37.066406 47.875 34.5 C 47.960938 34.347656 48.003906 34.175781 48 34 C 48 29.058594 46.949219 23.808594 45.65625 19.53125 C 45.007813 17.394531 44.296875 15.484375 43.625 14 C 42.953125 12.515625 42.410156 11.480469 41.6875 10.8125 C 41.667969 10.800781 41.644531 10.789063 41.625 10.78125 C 37.460938 7.4375 31.09375 7 31.09375 7 C 31.019531 6.992188 30.949219 6.992188 30.875 7 C 30.527344 7.046875 30.234375 7.273438 30.09375 7.59375 C 30.09375 7.59375 29.753906 8.339844 29.53125 9.40625 C 27.582031 9.09375 25.941406 9 25 9 C 24.058594 9 22.417969 9.09375 20.46875 9.40625 C 20.246094 8.339844 19.90625 7.59375 19.90625 7.59375 C 19.734375 7.203125 19.332031 6.964844 18.90625 7 Z M 18.28125 9.15625 C 18.355469 9.359375 18.40625 9.550781 18.46875 9.78125 C 16.214844 10.304688 13.746094 11.160156 11.4375 12.59375 C 11.074219 12.746094 10.835938 13.097656 10.824219 13.492188 C 10.816406 13.882813 11.039063 14.246094 11.390625 14.417969 C 11.746094 14.585938 12.167969 14.535156 12.46875 14.28125 C 17.101563 11.410156 22.996094 11 25 11 C 27.003906 11 32.898438 11.410156 37.53125 14.28125 C 37.832031 14.535156 38.253906 14.585938 38.609375 14.417969 C 38.960938 14.246094 39.183594 13.882813 39.175781 13.492188 C 39.164063 13.097656 38.925781 12.746094 38.5625 12.59375 C 36.253906 11.160156 33.785156 10.304688 31.53125 9.78125 C 31.59375 9.550781 31.644531 9.359375 31.71875 9.15625 C 32.859375 9.296875 37.292969 9.894531 40.3125 12.28125 C 40.507813 12.460938 41.1875 13.460938 41.8125 14.84375 C 42.4375 16.226563 43.09375 18.027344 43.71875 20.09375 C 44.9375 24.125 45.921875 29.097656 45.96875 33.65625 C 44.832031 35.496094 42.699219 36.863281 40.5 37.71875 C 38.5 38.496094 36.632813 38.84375 35.65625 38.9375 L 33.96875 36.65625 C 34.828125 36.378906 35.601563 36.078125 36.28125 35.78125 C 38.804688 34.671875 40.15625 33.5 40.15625 33.5 C 40.570313 33.128906 40.605469 32.492188 40.234375 32.078125 C 39.863281 31.664063 39.226563 31.628906 38.8125 32 C 38.8125 32 37.765625 32.957031 35.46875 33.96875 C 34.625 34.339844 33.601563 34.707031 32.4375 35.03125 C 32.167969 35 31.898438 35.078125 31.6875 35.25 C 29.824219 35.703125 27.609375 36 25 36 C 22.371094 36 20.152344 35.675781 18.28125 35.21875 C 18.070313 35.078125 17.8125 35.019531 17.5625 35.0625 C 16.394531 34.738281 15.378906 34.339844 14.53125 33.96875 C 12.234375 32.957031 11.1875 32 11.1875 32 C 10.960938 31.789063 10.648438 31.699219 10.34375 31.75 C 9.957031 31.808594 9.636719 32.085938 9.53125 32.464844 C 9.421875 32.839844 9.546875 33.246094 9.84375 33.5 C 9.84375 33.5 11.195313 34.671875 13.71875 35.78125 C 14.398438 36.078125 15.171875 36.378906 16.03125 36.65625 L 14.34375 38.9375 C 13.367188 38.84375 11.5 38.496094 9.5 37.71875 C 7.300781 36.863281 5.167969 35.496094 4.03125 33.65625 C 4.078125 29.097656 5.0625 24.125 6.28125 20.09375 C 6.90625 18.027344 7.5625 16.226563 8.1875 14.84375 C 8.8125 13.460938 9.492188 12.460938 9.6875 12.28125 C 12.707031 9.894531 17.140625 9.296875 18.28125 9.15625 Z M 18.5 21 C 15.949219 21 14 23.316406 14 26 C 14 28.683594 15.949219 31 18.5 31 C 21.050781 31 23 28.683594 23 26 C 23 23.316406 21.050781 21 18.5 21 Z M 31.5 21 C 28.949219 21 27 23.316406 27 26 C 27 28.683594 28.949219 31 31.5 31 C 34.050781 31 36 28.683594 36 26 C 36 23.316406 34.050781 21 31.5 21 Z M 18.5 23 C 19.816406 23 21 24.265625 21 26 C 21 27.734375 19.816406 29 18.5 29 C 17.183594 29 16 27.734375 16 26 C 16 24.265625 17.183594 23 18.5 23 Z M 31.5 23 C 32.816406 23 34 24.265625 34 26 C 34 27.734375 32.816406 29 31.5 29 C 30.183594 29 29 27.734375 29 26 C 29 24.265625 30.183594 23 31.5 23 Z"></path></svg>'), auto;
+
+      }
+      .contacts-3{
+        margin-left: -5px;
+        padding-left: 10px;
+        font-size: 20px;
+        width: 50%;
+        /*height: 200px;*/
+        border-style: solid;
+        border-width: 2.5px;
+        border-color: black;
+        box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+        transition: box-shadow 0.3s ease-in-out;
+        margin-top: 20px;
+        margin-bottom: 20px;
+      }
+
+      /*Style the shadow under posts and similar stuff*/
+      .contacts-3:hover{
+        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="25" height="25" viewBox="0 0 50 50"><path d="M 10 0 C 4.488281 0 0 4.488281 0 10 L 0 40 C 0 45.511719 4.488281 50 10 50 L 40 50 C 45.511719 50 50 45.511719 50 40 L 50 10 C 50 4.488281 45.511719 0 40 0 Z M 10 2 L 40 2 C 44.433594 2 48 5.566406 48 10 L 48 40 C 48 44.433594 44.433594 48 40 48 L 10 48 C 5.566406 48 2 44.433594 2 40 L 2 10 C 2 5.566406 5.566406 2 10 2 Z M 20.5 8 C 19.722656 8 19.0625 8.660156 19.0625 9.4375 C 19.0625 12.257813 17.582031 14.199219 16.03125 15.53125 C 15.257813 16.195313 14.46875 16.679688 13.875 17 C 13.578125 17.160156 13.359375 17.296875 13.1875 17.375 C 13.015625 17.453125 12.804688 17.515625 12.9375 17.46875 C 12.925781 17.46875 12.917969 17.46875 12.90625 17.46875 C 12.359375 17.683594 12 18.226563 12 18.8125 L 12 22.59375 C 12 23.371094 12.691406 24 13.4375 24 L 16 24 L 16 33.65625 C 16 34.214844 16.058594 36.652344 17.15625 39.09375 C 18.253906 41.535156 20.621094 44 24.75 44 C 31.265625 44 34.304688 41.484375 34.5 41.3125 C 34.511719 41.3125 34.519531 41.3125 34.53125 41.3125 C 34.835938 41.042969 35 40.660156 35 40.25 L 35 35.75 C 35 35.230469 34.703125 34.75 34.25 34.5 C 33.804688 34.25 33.257813 34.246094 32.8125 34.53125 C 32.929688 34.457031 32.808594 34.53125 32.75 34.5625 C 32.691406 34.59375 32.582031 34.660156 32.46875 34.71875 C 32.242188 34.835938 31.9375 35 31.53125 35.15625 C 30.71875 35.46875 29.59375 35.75 28.4375 35.75 C 27.148438 35.75 26.699219 35.273438 26.375 34.71875 C 26.214844 34.441406 26.117188 34.148438 26.0625 33.90625 C 26.007813 33.664063 26 33.410156 26 33.5 L 26 24 L 31.5625 24 C 32.386719 24 33 23.339844 33 22.5625 L 33 17.4375 C 33 16.660156 32.378906 16 31.5625 16 L 26 16 L 26 9.4375 C 26 8.660156 25.339844 8 24.5625 8 Z M 21 10 L 24 10 L 24 17 C 24 17.550781 24.449219 18 25 18 L 31 18 L 31 22 L 25 22 C 24.449219 22 24 22.449219 24 23 L 24 33.5 C 24 33.714844 24.035156 33.949219 24.125 34.34375 C 24.214844 34.738281 24.359375 35.210938 24.65625 35.71875 C 25.246094 36.734375 26.519531 37.75 28.4375 37.75 C 29.9375 37.75 31.28125 37.375 32.25 37 C 32.5625 36.878906 32.769531 36.796875 33 36.6875 L 33 39.90625 C 32.757813 40.113281 30.488281 42 24.75 42 C 21.363281 42 19.863281 40.269531 18.96875 38.28125 C 18.074219 36.292969 18 34.054688 18 33.65625 L 18 23 C 18 22.449219 17.550781 22 17 22 L 14 22 L 14 19.1875 C 14.210938 19.09375 14.5 18.9375 14.84375 18.75 C 15.53125 18.378906 16.429688 17.84375 17.34375 17.0625 C 19.0625 15.585938 20.800781 13.214844 21 10 Z"></path></svg>'), auto;
+
+      }
+      .contacts-4{
+        margin-left: -5px;
+        padding-left: 10px;
+        font-size: 20px;
+        width: 50%;
+        /*height: 200px;*/
+        border-style: solid;
+        border-width: 2.5px;
+        border-color: black;
+        box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+        transition: box-shadow 0.3s ease-in-out;
+        margin-top: 20px;
+        margin-bottom: 20px;
+      }
+
+      /*Style the shadow under posts and similar stuff*/
+      .contacts-4:hover{
+        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30" height="30" viewBox="0 0 48 48"><path d="M 23.947266 4.4980469 A 1.50015 1.50015 0 0 0 23.935547 4.5 C 19.235648 4.5388 14.745251 4.9677107 11.71875 6.3554688 C 11.70895 6.3599787 10.092981 7.104892 8.6210938 8.8867188 C 7.1447394 10.673953 5.7207031 13.586225 5.7207031 17.818359 C 5.7207031 19.586784 5.6842055 21.743694 5.7421875 24.050781 A 1.5004834 1.5004834 0 0 0 8.7421875 23.974609 C 8.6861695 21.745696 8.7207031 19.625934 8.7207031 17.818359 C 8.7207031 14.241494 9.8534011 12.106891 10.935547 10.796875 C 12.017693 9.4868591 12.949219 9.0898438 12.949219 9.0898438 A 1.50015 1.50015 0 0 0 12.962891 9.0839844 C 15.094376 8.1049879 19.448879 7.5361522 23.947266 7.4980469 L 24.060547 7.4980469 C 28.557201 7.5363069 32.916116 8.1053219 35.046875 9.0839844 A 1.50015 1.50015 0 0 0 35.058594 9.0898438 C 35.058594 9.0898438 35.992127 9.4870298 37.074219 10.796875 C 38.156311 12.10672 39.289062 14.240952 39.289062 17.818359 A 1.50015 1.50015 0 0 0 39.289062 17.835938 C 39.289062 17.835938 39.327032 23.575054 38.603516 27.294922 A 1.50015 1.50015 0 1 0 41.546875 27.867188 C 42.3777 23.595587 42.289421 17.839398 42.289062 17.816406 C 42.288591 13.58495 40.862882 10.671625 39.386719 8.8847656 C 37.914784 7.1030261 36.300823 6.3599875 36.291016 6.3554688 C 33.264111 4.9675257 28.771182 4.5388003 24.072266 4.5 A 1.50015 1.50015 0 0 0 24.060547 4.4980469 L 23.947266 4.4980469 z M 18.738281 12.101562 C 17.081281 12.101563 15.745563 12.684313 14.726562 13.820312 C 13.738563 14.957312 13.246094 16.492781 13.246094 18.425781 L 13.246094 27.880859 L 16.992188 27.880859 L 16.992188 18.703125 C 16.992188 16.768125 17.807547 15.785156 19.435547 15.785156 C 21.236547 15.785156 22.138672 16.950906 22.138672 19.253906 L 22.138672 24.277344 L 25.861328 24.277344 L 25.861328 19.253906 C 25.861328 16.950906 26.764453 15.785156 28.564453 15.785156 C 30.192453 15.785156 31.007812 16.768125 31.007812 18.703125 L 31.007812 27.880859 L 34.753906 27.880859 L 34.753906 18.425781 C 34.753906 16.493781 34.261437 14.956313 33.273438 13.820312 C 32.254437 12.683312 30.918719 12.101562 29.261719 12.101562 C 27.343719 12.101563 25.893594 12.8385 24.933594 14.3125 L 24 15.876953 L 23.066406 14.3125 C 22.106406 12.8385 20.655281 12.101562 18.738281 12.101562 z M 7.5 27.273438 A 1.50015 1.50015 0 0 0 6.0546875 28.964844 C 6.3978621 31.974901 7.0683767 34.86442 8.4921875 37.296875 C 9.9159983 39.72933 12.175427 41.662891 15.322266 42.496094 A 1.50015 1.50015 0 0 0 15.322266 42.498047 C 18.73232 43.400061 21.690686 43.595052 24.089844 43.462891 A 1.50015 1.50015 0 0 0 24.091797 43.462891 C 27.083573 43.296622 29.202871 42.623124 30.28125 42.193359 C 31.265561 41.801619 31.896071 40.803923 31.849609 39.759766 A 1.50015 1.50015 0 0 0 31.849609 39.757812 L 31.800781 38.708984 L 31.800781 38.707031 C 31.731171 37.193979 30.258025 36.045378 28.765625 36.380859 C 27.698469 36.620482 25.927675 36.917601 24.105469 36.855469 C 22.500882 36.800099 20.987502 36.675061 20.027344 36.261719 C 19.348517 35.969488 18.952962 35.506779 18.669922 34.792969 C 20.020039 35.018223 21.863684 35.268293 23.9375 35.363281 C 26.553836 35.484084 28.962483 35.209664 31.322266 34.927734 C 32.869476 34.743225 34.339849 34.324159 35.666016 33.748047 A 1.50015 1.50015 0 1 0 34.470703 30.998047 C 33.40287 31.461934 32.203586 31.801728 30.966797 31.949219 C 28.62258 32.229289 26.397836 32.472432 24.076172 32.365234 C 20.193419 32.187391 17.138672 31.443359 17.138672 31.443359 A 1.50015 1.50015 0 0 0 15.28125 32.900391 C 15.28125 33.352459 15.309791 33.791446 15.369141 34.21875 C 15.687623 36.624254 17.144883 38.285954 18.839844 39.015625 C 20.535935 39.745782 22.36054 39.79688 24.001953 39.853516 C 25.965366 39.920786 27.590905 39.621344 28.828125 39.367188 L 28.835938 39.509766 C 27.931121 39.845581 26.321805 40.333379 23.925781 40.466797 C 21.822939 40.582635 19.18979 40.417647 16.089844 39.597656 C 13.669651 38.956905 12.179517 37.659545 11.080078 35.78125 C 9.9806391 33.902955 9.3539348 31.403943 9.0371094 28.625 A 1.50015 1.50015 0 0 0 7.5 27.273438 z M 28.853516 39.890625 L 28.853516 39.894531 L 28.851562 39.892578 C 28.851562 39.892578 28.853516 39.890625 28.853516 39.890625 z"></path></svg>'), auto;
+      }
+      a:link {
+        color: #2C2C2C;
+        background-color: transparent;
+        text-decoration: none;
+      }
+
+      a:visited {
+        color: #372750;
+        background-color: transparent;
+        text-decoration: none;
+      }
+
+      a:hover {
+        color: #3C3C3C;
+        background-color: transparent;
+        text-decoration: none;
+      }
+
+      /*the container must be positioned relative:*/
+      .custom-select {
+        position: relative;
+        font-family: Arial;
+      }
+
+      .custom-select select {
+        display: none; /*hide original SELECT element:*/
+      }
+
+      .select-selected {
+        background-color: #B2E0DF;
+      }
+
+      /*style the arrow inside the select element:*/
+      .select-selected:after {
+        position: absolute;
+        content: "";
+        top: 14px;
+        right: 10px;
+        width: 0;
+        height: 0;
+        border: 6px solid transparent;
+        border-color: #636363 transparent transparent transparent;
+      }
+
+      /*point the arrow upwards when the select box is open (active):*/
+      .select-selected.select-arrow-active:after {
+        border-color: transparent transparent #636363 transparent;
+        top: 7px;
+      }
+
+      /*style the items (options), including the selected item:*/
+      .select-items div,.select-selected {
+        color: #636363;
+        padding: 8px 16px;
+        border: 1px solid transparent;
+        border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+        cursor: pointer;
+        user-select: none;
+      }
+
+      /*style items (options):*/
+      .select-items {
+        position: absolute;
+        background-color: #B2E0DF;
+        top: 100%;
+        left: 0;
+        right: 0;
+        z-index: 99;
+      }
+
+      /*hide the items when the select box is closed:*/
+      .select-hide {
+        display: none;
+      }
+
+      .select-items div:hover, .same-as-selected {
+        background-color: rgba(0, 0, 0, 0.1);
+      }
+
+      /*This removes scrollbar!!*/
+      ::-webkit-scrollbar{display:none;}
+    </style>
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial scale = 1">
+    <title>Fishappointment</title>
+    </head>
+    <body>
+      <div class="header">
+      Fishappointment
+      </div>
+      <div class="tab">
+    <button class="tablinks" onclick="openPage(event, 'Posts')" id="defaultOpen">Posts</button>
+    <button class="tablinks" onclick="openPage(event, 'Journals')">Journals</button>
+    <button class="tablinks" onclick="openPage(event, 'Contact')">Contact</button>
+    </div>
+
+
+    <div id="Posts" class="tabcontent">
+    <h1 class="posts-heading">Posts</h1>
+    <br>
+
+    <div class="custom-select" style="width:200px;">
+      <select>
+        <option value="0">Select Series:</option>
+        <option value="1">To Silence the Choir</option>
+        <option value="2">Chapter 2</option>
+        <option value="3">100 Nights</option>
+        <option value="4">Classic-Solos</option>
+        <option value="5">All</option>
+      </select>
+    </div>
+
+
+    <a href="posts/post-11.html"><div class="actual-posts-1 tstc">
+      <p class="post-title">to silence the choir: act 2</p>
+      <p class="post-description" style="font-size: 17.5px; color: #5C5C5C; font-family: Arial;";>The train will come to a stop in front of you. There will be a lot of noise at the platform. Everyone will rush towards where the coaches actually stop. 3 coach-spaces past the indications, as usual. You will board, along with your parents... <br>
+      Read more
+      <p class="post_date" style="font-size: 15.5px; color: #5C5C5C; font-family: Arial;">25 March 2024</p>
+      </p>
+    </div>
+    </a>
+
+    <a href="posts/post-10.html"><div class="actual-posts-1 tstc">
+      <p class="post-title">to silence the choir: act 1</p>
+      <p class="post-description" style="font-size: 17.5px; color: #5C5C5C; font-family: Arial;";>You have been living away from the maddening noise of the city for a decade now. Everyday starts the same, your alarms go off and you sleep through them. The sunrays tear through your family's worn out shelter you like to call a house and annoy you awake... <br>
+      Read more
+      <p class="post_date" style="font-size: 15.5px; color: #5C5C5C; font-family: Arial;">19 March 2024</p>
+      </p>
+    </div>
+    </a>
+
+    <a href="posts/post-9.html"><div class="actual-posts-1 c2">
+      <p class="post-title">Chapter 2 #3</p>
+      <p class="post-description" style="font-size: 17.5px; color: #5C5C5C; font-family: Arial;";>A night later I was looking out the window as it rained, not the traditional rainshower but whatever the Delhi equivalent of the word rain is... <br>
+      Read more
+      <p class="post_date" style="font-size: 15.5px; color: #5C5C5C; font-family: Arial;">26 August 2023</p>
+      </p>
+    </div>
+    </a>
+
+    <a href="posts/post-8.html"><div class="actual-posts-1 c2">
+      <p class="post-title">Chapter 2 #2</p>
+      <p class="post-description" style="font-size: 17.5px; color: #5C5C5C; font-family: Arial;";>Absence makes the heart grow fonder. I mean, it’s meant to, isn’t it? Do I really call it an attempt at seeking attention when the only person being affected is me? Probably, yeah, Through the night, I kept waiting for T to text something. He didn’t, of course... <br>
+      Read more
+      <p class="post_date" style="font-size: 15.5px; color: #5C5C5C; font-family: Arial;">13 February 2023</p>
+      </p>
+    </div>
+    </a>
+
+    <a href="posts/post-7.html"><div class="actual-posts-1 c2">
+      <p class="post-title">Chapter 2 #1</p>
+      <p class="post-description" style="font-size: 17.5px; color: #5C5C5C; font-family: Arial;";>“It’s as if nothing ever changed, isn’t it?”, he whispered, without looking at me. I was so lost looking at the lake that I forgot he was still right next to me. We were sharing the same earphones yet he felt so distant... <br>
+      Read more
+      <p class="post_date" style="font-size: 15.5px; color: #5C5C5C; font-family: Arial;">03 February 2023</p>
+      </p>
+    </div>
+    </a>
+
+    <a href="posts/post-6.html"><div class="actual-posts-1 hn">
+      <p class="post-title">100 Nights #2</p>
+      <p class="post-description" style="font-size: 17.5px; color: #5C5C5C; font-family: Arial;";> <br>
+      Coming soon
+      <p class="post_date" style="font-size: 15.5px; color: #5C5C5C; font-family: Arial;">18 April 2022</p>
+      </p>
+    </div>
+    </a>
+
+    <a href="posts/post-5.html"><div class="actual-posts-1 hn">
+      <p class="post-title">100 Nights #1: Mr.Blue</p>
+      <p class="post-description" style="font-size: 17.5px; color: #5C5C5C; font-family: Arial;";>The rays of sun lit up James’ typical rich-cause-i’m-lucky face, as he snored on the couch in front of his roof to floor window. His alarm rang for the 15th time and he finally decided it was time to slip off the couch to force himself to start his day... <br>
+      Read more
+      <p class="post_date" style="font-size: 15.5px; color: #5C5C5C; font-family: Arial;">16 April 2022</p>
+      </p>
+    </div>
+    </a>
+
+
+    <a href="posts/post-4.html"><div class="actual-posts-1 hn">
+      <p class="post-title">100 Nights #0</p>
+      <p class="post-description" style="font-size: 17.5px; color: #5C5C5C; font-family: Arial;";>100 nights revolves around the journey of James McCormack, Andre Hagen and Bob to climb to the peak of Mt.Frorence. A trio of middle aged men away from the city of 12 year old gender-confused kids and 50 year old retirees sitting half naked in their lawns. Hop in to find out what made a big time businessman, an immigrant and a guy getting by on unemployment funds get on this adventure. <br>
+      Read more
+      <p class="post_date" style="font-size: 15.5px; color: #5C5C5C; font-family: Arial;">04 April 2022</p>
+      </p>
+    </div>
+    </a>
+
+
+    <a href="posts/post-3.html"><div class="actual-posts-1 cs">
+      <p class="post-title">The Diwali Fiasco</p>
+      <p class="post-description" style="font-size: 17.5px; color: #5C5C5C; font-family: Arial;";>It was a sweet autumn evening. Me and the boys were standing on the balcony looking at the society we lived in. In just a couple of hours, the darkening sky would be filled with fireworks and those lovely lamps that I totally never wrote cusses on... <br>
+      Read more
+      <p class="post_date" style="font-size: 15.5px; color: #5C5C5C; font-family: Arial;">18 March 2022</p>
+      </p>
+    </div>
+    </a>
+
+
+    <a href="posts/post-2.html"><div class="actual-posts-1 cs">
+      <p class="post-title">Don't Fuck With Cats</p>
+      <p class="post-description" style="font-size: 17.5px; color: #5C5C5C; font-family: Arial;";> Once upon a time, two cats, Sir Pierre Louis Courvoiser and Timmy lived in the magnificent village of Vitrobéliard, the heart of France. Ever since the fall of Louis XVI (’s head lol), life hadn’t been the same for Sir Pierre Louis Courvoiser.... <br>
+      Read more
+      <p class="post_date" style="font-size: 15.5px; color: #5C5C5C; font-family: Arial;">15 March 2022</p>
+      </p>
+    </div>
+    </a>
+
+
+
+    <a href="posts/post-1.html"><div class="actual-posts-1 cs">
+      <p class="post-title">The Hare And The Tortoise (Reimagined)</p>
+      <p class="post-description" style="font-size: 17.5px; color: #5C5C5C; font-family: Arial;";> Once upon a time, a toroise and hare lived together in a jungle. They were good friends. The tortoise was known for his slow speed, while the hare was so fast he reached Dandi before the Dandi march even began... <br>
+      Read more
+      <p class="post_date" style="font-size: 15.5px; color: #5C5C5C; font-family: Arial;">15 March 2022</p>
+      </p>
+    </div>
+    </a>
+    </div>
+
+
+    <div id="Journals" class="tabcontent">
+    <h1 class="posts-heading">Journals</h1>
+
+    <a href="journals/journal-2.html"><div class="actual-journals-1">
+      <p class="post-title">Journal - 2: The River</p>
+      <p class="post-description" style="font-size: 17.5px; color: #5C5C5C; font-family: Arial;";>   i fucked up. yeah that about sums it up thanks for reading.... <br><br>
+      Read more
+      <p class="post_date" style="font-size: 15.5px; color: #5C5C5C; font-family: Arial;">12 August 2022</p>
+      </p>
+    </div>
+    </a>
+    <a href="journals/journal-1.html"><div class="actual-journals-1">
+      <p class="post-title">Journal - 1: Estoy Triste</p>
+      <p class="post-description" style="font-size: 17.5px; color: #5C5C5C; font-family: Arial;";> so, it has been a long time since i updated the stories. specially hundred nights… which was (and is) meant to go on for 98 more posts. the clear issue behind that was me being unhappy with andre’s back story... <br>
+      Read more
+      <p class="post_date" style="font-size: 15.5px; color: #5C5C5C; font-family: Arial;">12 July 2022</p>
+      </p>
+    </div>
+    </a>
+  </div>
+
+  <div id="Contact" class="tabcontent">
+    <h1 class="posts-heading">Contact</h1>
+    <a href="mailto:ch19ag@gmail.com">
+      <div class="contacts-1">
+        <p class="post-title">Mail</p>
+      </div>
+    </a>
+    <a href="https://discordapp.com/users/360817872802676736">
+      <div class="contacts-2">
+        <p class="post-title">Discord</p>
+      </div>
+    </a>
+    </a>
+    <a href="https://www.tumblr.com/cookiemonsterbutcooler">
+        <div class="contacts-3">
+          <p class="post-title">Tumblr</p>
+        </div>
+    </a>
+    <a href="https://mastodon.social/@hairlesscookie">
+          <div class="contacts-4">
+            <p class="post-title">Mastodon</p>
+          </div>
+    </a>
+
+  </div>
+
+
+
+  <script>
+
+  var x, i, j, l, ll, selElmnt, a, b, c;
+  /*look for any elements with the class "custom-select":*/
+  x = document.getElementsByClassName("custom-select");
+  l = x.length;
+  for (i = 0; i < l; i++) {
+    selElmnt = x[i].getElementsByTagName("select")[0];
+    ll = selElmnt.length;
+    /*for each element, create a new DIV that will act as the selected item:*/
+    a = document.createElement("DIV");
+    a.setAttribute("class", "select-selected");
+    a.innerHTML = selElmnt.options[selElmnt.selectedIndex].innerHTML;
+
+    selElmnt.selectedIndex = 0; // Set the selected index to 0
+    x[i].appendChild(a);
+    /*for each element, create a new DIV that will contain the option list:*/
+    b = document.createElement("DIV");
+    b.setAttribute("class", "select-items select-hide");
+    for (j = 1; j < ll; j++) {
+      /*for each option in the original select element,
+      create a new DIV that will act as an option item:*/
+      c = document.createElement("DIV");
+      c.innerHTML = selElmnt.options[j].innerHTML;
+      c.addEventListener("click", function(e) {
+
+          /*when an item is clicked, update the original select box,
+          and the selected item:*/
+
+          var y, i, k, s, h, sl, yl;
+          s = this.parentNode.parentNode.getElementsByTagName("select")[0];
+          sl = s.length;
+          h = this.parentNode.previousSibling;
+          for (i = 0; i < sl; i++) {
+            if (s.options[i].innerHTML == this.innerHTML) {
+              s.selectedIndex = i;
+              h.innerHTML = this.innerHTML;
+              y = this.parentNode.getElementsByClassName("same-as-selected");
+              yl = y.length;
+              for (k = 0; k < yl; k++) {
+                y[k].removeAttribute("class");
+              }
+              this.setAttribute("class", "same-as-selected");
+              break;
+            }
+          }
+          h.click();
+
+
+          /*CUSTOM on change in dropdown code - HAIRLESSCOOKIE*/
+          h.innerHTML = this.innerHTML;
+          this.classList.add("select-hide");
+          var targetDivs = document.querySelectorAll(".actual-posts-1");
+          for (var i = 0; i < targetDivs.length; i++) {
+            targetDivs[i].classList.remove("select-hide");
+          }
+          if(s.selectedIndex == 1){
+            var tstcs = document.querySelectorAll(".tstc");
+            for (var i = 0; i < targetDivs.length; i++) {
+              targetDivs[i].classList.add("select-hide");
+            }
+            for (var i = 0; i < tstcs.length; i++) {
+              tstcs[i].classList.remove("select-hide");
+            }
+          }
+          else if(s.selectedIndex == 2){
+            var c2s = document.querySelectorAll(".c2");
+            for (var i = 0; i < targetDivs.length; i++) {
+              targetDivs[i].classList.add("select-hide");
+            }
+            for (var i = 0; i < c2s.length; i++) {
+              c2s[i].classList.remove("select-hide");
+            }
+          }
+          else if(s.selectedIndex == 3){
+            var hns = document.querySelectorAll(".hn");
+            for (var i = 0; i < targetDivs.length; i++) {
+              targetDivs[i].classList.add("select-hide");
+            }
+            for (var i = 0; i < hns.length; i++) {
+              hns[i].classList.remove("select-hide");
+            }
+          }
+          else if(s.selectedIndex == 4){
+            var css = document.querySelectorAll(".cs");
+            for (var i = 0; i < targetDivs.length; i++) {
+              targetDivs[i].classList.add("select-hide");
+            }
+            for (var i = 0; i < css.length; i++) {
+              css[i].classList.remove("select-hide");
+            }
+          }
+          else if(s.selectedIndex == 5){
+            for (var i = 0; i < targetDivs.length; i++) {
+              targetDivs[i].classList.remove("select-hide");
+            }
+          }
+          else{
+            document.write("How did we get here (OmO!) [Unexpected Error]")
+          }
+
+
+      });
+
+      b.appendChild(c);
+    }
+    x[i].appendChild(b);
+    a.addEventListener("click", function(e) {
+        /*when the select box is clicked, close any other select boxes,
+        and open/close the current select box:*/
+        e.stopPropagation();
+        closeAllSelect(this);
+        this.nextSibling.classList.toggle("select-hide");
+        this.classList.toggle("select-arrow-active");
+      });
+  }
+
+  function closeAllSelect(elmnt) {
+    /*a function that will close all select boxes in the document,
+    except the current select box:*/
+    var x, y, i, xl, yl, arrNo = [];
+    x = document.getElementsByClassName("select-items");
+    y = document.getElementsByClassName("select-selected");
+    xl = x.length;
+    yl = y.length;
+    for (i = 0; i < yl; i++) {
+      if (elmnt == y[i]) {
+        arrNo.push(i)
+      } else {
+        y[i].classList.remove("select-arrow-active");
+      }
+    }
+    for (i = 0; i < xl; i++) {
+      if (arrNo.indexOf(i)) {
+        x[i].classList.add("select-hide");
+      }
+    }
+  }
+  /*if the user clicks anywhere outside the select box,
+  then close all select boxes:*/
+  document.addEventListener("click", closeAllSelect);
+
+
+
+  function openPage(evt, pageName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(pageName).style.display = "block";
+    evt.currentTarget.className += " active";
+  }
+    document.getElementById("defaultOpen").click();
+
+  </script>
+  </body>
+</html>
